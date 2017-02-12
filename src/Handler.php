@@ -133,7 +133,7 @@ class Handler {
     $includes = $this->getIncludes();
     // Check dev files if necessary.
     if ($dev) {
-      $includes = array_merge($includes, $this->getDev());
+      $includes = array_merge($includes, $this->getIncludesDev());
     }
     $files = array_diff($includes, $this->getExcludes());
 
@@ -296,8 +296,8 @@ EOF;
    *
    * @return array
    */
-  protected function getDev() {
-    return $this->getNamedOptionList('dev', 'getDevDefault');
+  protected function getIncludesDev() {
+    return $this->getNamedOptionList('includes-dev', 'getIncludesDevDefault');
   }
 
   /**
@@ -338,9 +338,9 @@ EOF;
       'omit-defaults' => FALSE,
       'excludes' => [],
       'includes' => [],
+      'includes-dev' => [],
       'initial' => [],
       'source' => 'https://cgit.drupalcode.org/drupal/plain/{path}?h={version}',
-      'dev' => [],
       // Github: https://raw.githubusercontent.com/drupal/drupal/{version}/{path}
     ];
     return $options;
@@ -380,7 +380,7 @@ EOF;
   /**
    * Holds default dev files list.
    */
-  protected function getDevDefault() {
+  protected function getIncludesDevDefault() {
     $version = $this->getDrupalCoreVersion($this->getDrupalCorePackage());
     list($major, $minor) = explode('.', $version, 3);
     $version = "$major.$minor";
