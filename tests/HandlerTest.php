@@ -73,7 +73,7 @@ class HandlerTest extends \PHPUnit_Framework_TestCase {
     $this->composer('install --no-dev');
     $this->assertFileExists($exampleScaffoldFile, 'Scaffold file should exist.');
     $this->assertFileNotExists($developmentScaffoldFile, 'Development scaffold file should not exist.');
-    $this->composer('drupal-scaffold');
+    $this->composer('drupal:scaffold');
     $this->assertFileExists($exampleScaffoldFile, 'Scaffold file should exist.');
     $this->assertFileExists($developmentScaffoldFile, 'Development scaffold file should exist.');
   }
@@ -108,18 +108,15 @@ class HandlerTest extends \PHPUnit_Framework_TestCase {
         array(
           'type' => 'vcs',
           'url' => $this->rootDir,
-        )
+        ),
       ),
       'require' => array(
         'drupal-composer/drupal-scaffold' => $this->tmpReleaseTag,
         'composer/installers' => '^1.0.20',
         'drupal/core' => '8.0.0',
       ),
-      'scripts' => array(
-        'drupal-scaffold' =>  'DrupalComposer\\DrupalScaffold\\Plugin::scaffold'
-      ),
       'minimum-stability' => 'dev',
-      'prefer-stable' => true,
+      'prefer-stable' => TRUE,
     );
   }
 
@@ -160,6 +157,7 @@ class HandlerTest extends \PHPUnit_Framework_TestCase {
     if (is_dir($directory)) {
       $this->fs->removeDirectory($directory);
     }
-    mkdir($directory, 0777, true);
+    mkdir($directory, 0777, TRUE);
   }
+
 }

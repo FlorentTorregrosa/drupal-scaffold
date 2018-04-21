@@ -124,7 +124,7 @@ class Handler {
    * @param bool $dev
    *   TRUE if dev packages are installed. FALSE otherwise.
    */
-  public function downloadScaffold($dev = FALSE) {
+  public function downloadScaffold($dev = TRUE) {
     $drupalCorePackage = $this->getDrupalCorePackage();
     $webroot = realpath($this->getWebRoot());
 
@@ -394,7 +394,6 @@ EOF;
       '.csslintrc',
       '.editorconfig',
       '.eslintignore',
-      '.eslintrc.json',
       '.gitattributes',
       'sites/development.services.yml',
     ];
